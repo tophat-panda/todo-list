@@ -1,7 +1,7 @@
 const todos = [
   {
     id: "5349b4ddd2781d08c09890f3",
-    name: "Learn react",
+    name: process.env.FOO,
     completed: true
   },
   {
