@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import Axios from "axios";
+import { toggleTodo, fetchTodos, createTodo } from "./api";
+
+// TODO, update user interface to look nicer and allow ability to create todo and toggle todo
 
 class App extends Component {
   state = { fetching: false, data: [], error: false };
   fetchData = () => {
     this.setState({ fetching: true, data: [], error: false });
-    Axios.get("/.netlify/functions/todos")
+    fetchTodos()
       .then(response => {
         this.setState({ fetching: false, data: response.data });
       })
