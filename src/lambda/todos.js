@@ -1,28 +1,5 @@
-import * as mongo from "mongodb";
-
-function response({ statusCode = 200, body }) {
-  return {
-    statusCode,
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(body)
-  };
-}
-
-async function getDatabaseConnection() {
-  // Create a mongo client instance
-  const db = await mongo.MongoClient.connect(process.env.DATABASE);
-  // get the todo database
-  const dbo = db.db("todo");
-  // Return the dbo and a means to close the connection
-  return {
-    dbo,
-    close() {
-      return db.close();
-    }
-  };
-}
+import getDatabaseConnection from "./util/get-database-connection";
+import response from "./util/response";
 
 async function createNewTodo({ name }) {
   // Get a database connection
